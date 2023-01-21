@@ -1,22 +1,22 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Button} from 'react-native';
+import React, { useState } from "react";
+import { View, StyleSheet, Button } from "react-native";
 
 // import components
-import Header from './Header';
-import WeatherInfo from './WeatherInfo';
-import CityInput from './CityInput';
+import Header from "./Header";
+import WeatherInfo from "./WeatherInfo";
+import CityInput from "./CityInput";
 
 const CurrentWeatherScreen = () => {
   const [weatherData, setWeatherData] = useState({});
-  const [city, setCity] = useState('Tampere');
+  const [city, setCity] = useState("Tampere");
 
-  const cityHandler = city => {
+  const cityHandler = (city) => {
     setCity(city);
   };
 
   const fetchWeatherData = async () => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=ee01153b4d5b01a0b70e11a27399ccde`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=ee01153b4d5b01a0b70e11a27399ccde`
     );
     const data = await response.json();
     setWeatherData({
@@ -48,15 +48,15 @@ const CurrentWeatherScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'antiquewhite',
+    flexDirection: "column",
+    backgroundColor: "antiquewhite",
     padding: 8,
   },
   button: {
     flex: 1,
-    backgroundColor: 'lightblue',
+    backgroundColor: "lightblue",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 

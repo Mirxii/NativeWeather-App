@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 const WeatherForecastScreen = () => {
   return (
@@ -12,15 +12,15 @@ const WeatherForecastScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'antiquewhite',
+    backgroundColor: "antiquewhite",
     padding: 8,
   },
   text: {
     fontSize: 25,
-    color: 'darkslategray',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    fontWeight: 'bold',
+    color: "darkslategray",
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontWeight: "bold",
   },
 });
 
