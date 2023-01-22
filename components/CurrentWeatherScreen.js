@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Button } from "react-native";
+import { OPEN_WEATHER_API_KEY } from "@env";
 
 // import components
 import Header from "./Header";
@@ -16,7 +17,7 @@ const CurrentWeatherScreen = () => {
 
   const fetchWeatherData = async () => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=ee01153b4d5b01a0b70e11a27399ccde`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
     );
     const data = await response.json();
     setWeatherData({
