@@ -16,16 +16,20 @@ const CurrentWeatherScreen = () => {
   };
 
   const fetchWeatherData = async () => {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
-    );
-    const data = await response.json();
-    setWeatherData({
-      city: data.name,
-      temperature: data.main.temp,
-      windSpeed: data.wind.speed,
-      description: data.weather[0].description,
-    });
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
+      );
+      const data = await response.json();
+      setWeatherData({
+        city: data.name,
+        temperature: data.main.temp,
+        windSpeed: data.wind.speed,
+        description: data.weather[0].main,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
