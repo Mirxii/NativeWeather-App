@@ -1,8 +1,8 @@
-import React from 'react';
-import {View, StyleSheet, Text, TextInput} from 'react-native';
+import React from "react";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 
-const CityInput = props => {
-  const cityChangeHandler = city => {
+const CityInput = (props) => {
+  const cityChangeHandler = (city) => {
     props.handleCityChange(city);
   };
 
@@ -15,26 +15,21 @@ const CityInput = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    padding: 8,
-  },
   header: {
-    backgroundColor: 'antiquewhite',
+    backgroundColor: "antiquewhite",
     fontSize: 22,
-    fontWeight: 'bold',
-    color: 'darkslategray',
-    textAlign: 'center',
-    textAlignVertical: 'center',
+    fontWeight: "bold",
+    color: "darkslategray",
+    textAlign: "center",
+    textAlignVertical: "center",
     padding: 10,
   },
   input: {
-    backgroundColor: 'lightblue',
+    backgroundColor: "lightblue",
     fontSize: 22,
-    color: 'darkslategray',
-    textAlign: 'center',
-    textAlignVertical: 'center',
+    color: "darkslategray",
+    textAlign: "center",
+    textAlignVertical: "center",
     padding: 16,
     marginTop: 8,
     marginBottom: 8,
