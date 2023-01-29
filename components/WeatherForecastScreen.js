@@ -7,10 +7,30 @@ import CityInput from "./CityInput";
 import WeatherListItem from "./WeatherListItem";
 
 const WeatherForecastScreen = () => {
-  const [city, setCity] = useState("Tampere");
   const [forecastData, setForecastData] = useState({});
+  const [city, setCity] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [method, setMethod] = useState(null);
 
-  const fetchForecastData = async () => {
+  const cityHandler = (city) => {
+    setCity(city);
+    setMethod("city");
+  };
+
+  const locationHandler = (location) => {
+    setLocation(location);
+    setMethod("coords");
+  };
+
+  const fetchForecast = async () => {
+    if (method === "city") {
+      fetchForecastDataByCity();
+    } else if (method === "coords") {
+      fetchForecastDataByCoords();
+    }
+  };
+
+  const fetchForecastDataByCity = async () => {
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
@@ -22,8 +42,16 @@ const WeatherForecastScreen = () => {
     }
   };
 
-  const cityHandler = (city) => {
-    setCity(city);
+  const fetchForecastDataByCoords = async () => {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
+      );
+      const data = await response.json();
+      setForecastData(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   let cityTitle = forecastData.city ? forecastData.city.name : "Lookup a city";
@@ -44,8 +72,11 @@ const WeatherForecastScreen = () => {
         )}
         keyExtractor={(item) => item.dt_txt}
       />
-      <CityInput handleCityChange={cityHandler} />
-      <Button title="Get Forecast" onPress={() => fetchForecastData()} />
+      <CityInput
+        handleLocationChange={locationHandler}
+        handleCityChange={cityHandler}
+      />
+      <Button title="Get Forecast" onPress={() => fetchForecast()} />
     </View>
   );
 };
