@@ -1,7 +1,7 @@
-import React from "react";
-import { View, StyleSheet, Text, TextInput } from "react-native";
+import React from 'react';
+import { View, StyleSheet, Text, TextInput } from 'react-native';
 
-import GeoLocation from "./GeoLocation";
+import GeoLocation from './GeoLocation';
 
 const CityInput = (props) => {
   const cityChangeHandler = (city) => {
@@ -26,32 +26,32 @@ const CityInput = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-evenly",
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
     padding: 8,
   },
   header: {
-    backgroundColor: "antiquewhite",
+    backgroundColor: 'antiquewhite',
     fontSize: 22,
-    fontWeight: "bold",
-    color: "darkslategray",
-    textAlign: "center",
-    textAlignVertical: "center",
+    fontWeight: 'bold',
+    color: 'darkslategray',
+    textAlign: 'center',
+    textAlignVertical: 'center',
     padding: 10,
   },
   input: {
     flex: 3,
-    backgroundColor: "lightblue",
+    backgroundColor: 'lightblue',
     fontSize: 22,
-    color: "darkslategray",
-    textAlign: "center",
-    textAlignVertical: "center",
+    color: 'darkslategray',
+    textAlign: 'center',
+    textAlignVertical: 'center',
     marginTop: 8,
     marginBottom: 8,
   },
   row: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   button: {
     flex: 1,

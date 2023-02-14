@@ -1,13 +1,13 @@
-import React from "react";
-import { TouchableHighlight } from "react-native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import * as Location from "expo-location";
+import React from 'react';
+import { TouchableHighlight } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as Location from 'expo-location';
 
 const GeoLocation = (props) => {
   const fetchLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
       return;
     }
 

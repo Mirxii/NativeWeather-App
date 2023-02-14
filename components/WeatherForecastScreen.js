@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { OPEN_WEATHER_API_KEY } from "@env";
-import { FlatList } from "react-native";
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { OPEN_WEATHER_API_KEY } from '@env';
+import { FlatList } from 'react-native';
 
-import CityInput from "./CityInput";
-import WeatherListItem from "./WeatherListItem";
+import CityInput from './CityInput';
+import WeatherListItem from './WeatherListItem';
 
 const WeatherForecastScreen = () => {
   const [forecastData, setForecastData] = useState({});
@@ -14,18 +14,18 @@ const WeatherForecastScreen = () => {
 
   const cityHandler = (city) => {
     setCity(city);
-    setMethod("city");
+    setMethod('city');
   };
 
   const locationHandler = (location) => {
     setLocation(location);
-    setMethod("coords");
+    setMethod('coords');
   };
 
   const fetchForecast = async () => {
-    if (method === "city") {
+    if (method === 'city') {
       fetchForecastDataByCity();
-    } else if (method === "coords") {
+    } else if (method === 'coords') {
       fetchForecastDataByCoords();
     }
   };
@@ -54,7 +54,7 @@ const WeatherForecastScreen = () => {
     }
   };
 
-  let cityTitle = forecastData.city ? forecastData.city.name : "Lookup a city";
+  let cityTitle = forecastData.city ? forecastData.city.name : 'Lookup a city';
 
   return (
     <View style={styles.container}>
@@ -84,7 +84,7 @@ const WeatherForecastScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "antiquewhite",
+    backgroundColor: 'antiquewhite',
     padding: 8,
   },
   list: {
@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
-    color: "darkslategray",
-    textAlign: "center",
-    textAlignVertical: "center",
-    fontWeight: "bold",
+    color: 'darkslategray',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
   },
 });
 

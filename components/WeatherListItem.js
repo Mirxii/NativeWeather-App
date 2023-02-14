@@ -1,41 +1,41 @@
-import React, { useMemo, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import React, { useMemo, useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const WeatherListItem = ({ time, description, temperature, wind }) => {
-  [icon, setIcon] = useState("");
-  [hours, setHours] = useState("");
+  [icon, setIcon] = useState('');
+  [hours, setHours] = useState('');
 
   const getIcon = () => {
     switch (description) {
-      case "Clear":
-        setIcon("weather-sunny");
+      case 'Clear':
+        setIcon('weather-sunny');
         break;
-      case "Clouds":
-        setIcon("weather-cloudy");
+      case 'Clouds':
+        setIcon('weather-cloudy');
         break;
-      case "Rain":
-        setIcon("weather-pouring");
+      case 'Rain':
+        setIcon('weather-pouring');
         break;
-      case "Drizzle":
-        setIcon("weather-rainy");
+      case 'Drizzle':
+        setIcon('weather-rainy');
         break;
-      case "Thunderstorm":
-        setIcon("weather-lightning");
+      case 'Thunderstorm':
+        setIcon('weather-lightning');
         break;
-      case "Snow":
-        setIcon("weather-snowy");
+      case 'Snow':
+        setIcon('weather-snowy');
         break;
-      case "Mist":
-        setIcon("weather-fog");
+      case 'Mist':
+        setIcon('weather-fog');
         break;
       default:
-        setIcon("weather-fog");
+        setIcon('weather-fog');
     }
   };
 
   const getHours = () => {
-    let parsedHours = `${time.split(" ")[1].split(":")[0]}`;
+    let parsedHours = `${time.split(' ')[1].split(':')[0]}`;
     setHours(parsedHours);
   };
 
@@ -60,19 +60,19 @@ const WeatherListItem = ({ time, description, temperature, wind }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    backgroundColor: "antiquewhite",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    backgroundColor: 'antiquewhite',
     padding: 8,
-    borderBottomColor: "darkslategray",
+    borderBottomColor: 'darkslategray',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   text: {
     fontSize: 22,
-    color: "darkslategray",
-    textAlign: "center",
-    textAlignVertical: "center",
-    fontWeight: "bold",
+    color: 'darkslategray',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
   },
 });
 

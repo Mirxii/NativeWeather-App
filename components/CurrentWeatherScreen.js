@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Button } from "react-native";
-import { OPEN_WEATHER_API_KEY } from "@env";
+import React, { useState } from 'react';
+import { View, StyleSheet, Button } from 'react-native';
+import { OPEN_WEATHER_API_KEY } from '@env';
 
 // import components
-import Header from "./Header";
-import WeatherInfo from "./WeatherInfo";
-import CityInput from "./CityInput";
+import Header from './Header';
+import WeatherInfo from './WeatherInfo';
+import CityInput from './CityInput';
 
 const CurrentWeatherScreen = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -16,21 +16,21 @@ const CurrentWeatherScreen = () => {
   const cityHandler = (city) => {
     if (city) {
       setCity(city);
-      setMethod("city");
+      setMethod('city');
     }
   };
 
   const locationHandler = (location) => {
     if (location) {
       setLocation(location);
-      setMethod("coords");
+      setMethod('coords');
     }
   };
 
   const fetchWeather = async () => {
-    if (method === "city") {
+    if (method === 'city') {
       fetchWeatherDataByCity();
-    } else if (method === "coords") {
+    } else if (method === 'coords') {
       fetchWeatherDataByCoords();
     }
   };
@@ -93,15 +93,15 @@ const CurrentWeatherScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    backgroundColor: "antiquewhite",
+    flexDirection: 'column',
+    backgroundColor: 'antiquewhite',
     padding: 8,
   },
   button: {
     flex: 1,
-    backgroundColor: "lightblue",
+    backgroundColor: 'lightblue',
     fontSize: 30,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 

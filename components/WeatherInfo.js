@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 
 // import icons
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const WeatherInfo = ({ temperature, wind, description }) => {
-  [icon, setIcon] = useState("weather-sunny");
+  [icon, setIcon] = useState('weather-sunny');
 
   const getIcon = () => {
     switch (description) {
-      case "Clear":
-        setIcon("weather-sunny");
+      case 'Clear':
+        setIcon('weather-sunny');
         break;
-      case "Clouds":
-        setIcon("weather-cloudy");
+      case 'Clouds':
+        setIcon('weather-cloudy');
         break;
-      case "Rain":
-        setIcon("weather-pouring");
+      case 'Rain':
+        setIcon('weather-pouring');
         break;
-      case "Drizzle":
-        setIcon("weather-rainy");
+      case 'Drizzle':
+        setIcon('weather-rainy');
         break;
-      case "Thunderstorm":
-        setIcon("weather-lightning");
+      case 'Thunderstorm':
+        setIcon('weather-lightning');
         break;
-      case "Snow":
-        setIcon("weather-snowy");
+      case 'Snow':
+        setIcon('weather-snowy');
         break;
-      case "Mist":
-        setIcon("weather-fog");
+      case 'Mist':
+        setIcon('weather-fog');
         break;
       default:
-        setIcon("weather-sunny");
+        setIcon('weather-sunny');
     }
   };
 
@@ -62,36 +62,36 @@ const WeatherInfo = ({ temperature, wind, description }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 3,
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    backgroundColor: "antiquewhite",
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    backgroundColor: 'antiquewhite',
     padding: 8,
   },
   text: {
     fontSize: 25,
-    color: "darkslategray",
-    textAlign: "center",
-    textAlignVertical: "center",
-    fontWeight: "bold",
+    color: 'darkslategray',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
   },
   title: {
     fontSize: 25,
-    color: "darkslategray",
-    textAlign: "center",
-    textAlignVertical: "center",
+    color: 'darkslategray',
+    textAlign: 'center',
+    textAlignVertical: 'center',
     marginBottom: 8,
   },
   description: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
   row: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
   column: {
-    flexDirection: "column",
-    justifyContent: "space-evenly",
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
   },
 });
 

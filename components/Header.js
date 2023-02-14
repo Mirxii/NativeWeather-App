@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
-const Header = ({cityName}) => {
+const Header = ({ cityName }) => {
   return (
     <View style={styles.headerStyle}>
       <Text style={styles.headerText}>{cityName}</Text>
