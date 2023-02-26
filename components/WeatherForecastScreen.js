@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { OPEN_WEATHER_API_KEY } from '@env';
 import { FlatList } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 import CityInput from './CityInput';
 import WeatherListItem from './WeatherListItem';
+import Header from './Header';
 
 const WeatherForecastScreen = () => {
   const [forecastData, setForecastData] = useState({});
   const [city, setCity] = useState(null);
   const [location, setLocation] = useState(null);
   const [method, setMethod] = useState(null);
+  const netInfo = useNetInfo();
 
   const cityHandler = (city) => {
     setCity(city);
@@ -23,6 +26,10 @@ const WeatherForecastScreen = () => {
   };
 
   const fetchForecast = async () => {
+    if (!netInfo.isConnected) {
+      console.log('No internet connection');
+      return;
+    }
     if (method === 'city') {
       fetchForecastDataByCity();
     } else if (method === 'coords') {
@@ -58,7 +65,7 @@ const WeatherForecastScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{cityTitle}</Text>
+      <Header text={cityTitle} />
       <FlatList
         style={styles.list}
         data={forecastData.list}

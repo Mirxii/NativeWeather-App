@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import { OPEN_WEATHER_API_KEY } from '@env';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 // import components
 import Header from './Header';
@@ -12,6 +13,7 @@ const CurrentWeatherScreen = () => {
   const [city, setCity] = useState(null);
   const [location, setLocation] = useState(null);
   const [method, setMethod] = useState(null);
+  const netInfo = useNetInfo();
 
   const cityHandler = (city) => {
     if (city) {
@@ -28,6 +30,10 @@ const CurrentWeatherScreen = () => {
   };
 
   const fetchWeather = async () => {
+    if (!netInfo.isConnected) {
+      console.log('No internet connection');
+      return;
+    }
     if (method === 'city') {
       fetchWeatherDataByCity();
     } else if (method === 'coords') {
@@ -41,12 +47,14 @@ const CurrentWeatherScreen = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
       );
       const data = await response.json();
-      setWeatherData({
-        city: data.name,
-        temperature: data.main.temp,
-        windSpeed: data.wind.speed,
-        description: data.weather[0].main,
-      });
+      if (data.cod === 200) {
+        setWeatherData({
+          city: data.name,
+          temperature: data.main.temp,
+          windSpeed: data.wind.speed,
+          description: data.weather[0].main,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -58,20 +66,24 @@ const CurrentWeatherScreen = () => {
         `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
       );
       const data = await response.json();
-      setWeatherData({
-        city: data.name,
-        temperature: data.main.temp,
-        windSpeed: data.wind.speed,
-        description: data.weather[0].main,
-      });
+      if (data.cod === 200) {
+        setWeatherData({
+          city: data.name,
+          temperature: data.main.temp,
+          windSpeed: data.wind.speed,
+          description: data.weather[0].main,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  let cityTitle = weatherData.city ? weatherData.city : 'Lookup a city';
+
   return (
     <View style={styles.container}>
-      <Header cityName={weatherData.city} />
+      <Header cityName={cityTitle} />
       <WeatherInfo
         temperature={weatherData.temperature}
         wind={weatherData.windSpeed}
