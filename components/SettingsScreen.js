@@ -1,10 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Switch } from 'react-native';
 
-const SettingsScreen = () => {
+import Header from './Header';
+
+const SettingsScreen = ({ isMetric, setIsMetric }) => {
+  const toggleUnitSystem = () => {
+    setIsMetric((previousState) => !previousState);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Settings</Text>
+      <Header text="Settings" />
+      <View style={styles.row}>
+        <Text style={styles.text}>Imperial</Text>
+        <Switch onValueChange={toggleUnitSystem} value={isMetric} />
+        <Text style={styles.text}>Metric</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.text}>Units used currently:</Text>
+        <Text style={styles.text}>{isMetric ? 'C & m/s' : 'F & mph'}</Text>
+      </View>
     </View>
   );
 };
@@ -21,6 +36,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     fontWeight: 'bold',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
 });
 

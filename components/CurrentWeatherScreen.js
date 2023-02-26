@@ -8,7 +8,7 @@ import Header from './Header';
 import WeatherInfo from './WeatherInfo';
 import CityInput from './CityInput';
 
-const CurrentWeatherScreen = () => {
+const CurrentWeatherScreen = ({ isMetric }) => {
   const [weatherData, setWeatherData] = useState({});
   const [city, setCity] = useState(null);
   const [location, setLocation] = useState(null);
@@ -44,7 +44,9 @@ const CurrentWeatherScreen = () => {
   const fetchWeatherDataByCity = async () => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${
+          isMetric === true ? 'metric' : 'imperial'
+        }&appid=${OPEN_WEATHER_API_KEY}`
       );
       const data = await response.json();
       if (data.cod === 200) {
@@ -63,7 +65,11 @@ const CurrentWeatherScreen = () => {
   const fetchWeatherDataByCoords = async () => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${
+          location.coords.latitude
+        }&lon=${location.coords.longitude}&units=${
+          isMetric === true ? 'metric' : 'imperial'
+        }&appid=${OPEN_WEATHER_API_KEY}`
       );
       const data = await response.json();
       if (data.cod === 200) {
@@ -83,7 +89,7 @@ const CurrentWeatherScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header cityName={cityTitle} />
+      <Header text={cityTitle} />
       <WeatherInfo
         temperature={weatherData.temperature}
         wind={weatherData.windSpeed}
@@ -93,11 +99,7 @@ const CurrentWeatherScreen = () => {
         handleLocationChange={locationHandler}
         handleCityChange={cityHandler}
       />
-      <Button
-        style={styles.button}
-        title="Get Weather"
-        onPress={() => fetchWeather()}
-      />
+      <Button title="Get Weather" onPress={() => fetchWeather()} />
     </View>
   );
 };
@@ -108,12 +110,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'antiquewhite',
     padding: 8,
-  },
-  button: {
-    flex: 1,
-    backgroundColor: 'lightblue',
-    fontSize: 30,
-    fontWeight: 'bold',
   },
 });
 

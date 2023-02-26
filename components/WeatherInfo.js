@@ -48,11 +48,11 @@ const WeatherInfo = ({ temperature, wind, description }) => {
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.title}>Temperature</Text>
-          <Text style={styles.text}>{temperature} C</Text>
+          <Text style={styles.text}>{temperature}</Text>
         </View>
         <View style={styles.column}>
           <Text style={styles.title}>Wind</Text>
-          <Text style={styles.text}>{wind} m/s</Text>
+          <Text style={styles.text}>{wind}</Text>
         </View>
       </View>
     </View>

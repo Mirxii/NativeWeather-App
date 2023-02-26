@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,12 +10,27 @@ import SettingsScreen from './components/SettingsScreen';
 const Tab = createBottomTabNavigator();
 
 const App = () => {
+  const [isMetric, setIsMetric] = useState(true);
+
+  let units = isMetric ? 'metric' : 'imperial';
+
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Current" component={CurrentWeatherScreen} />
-        <Tab.Screen name="Forecast" component={WeatherForecastScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen
+          name={`Current - ${units}`}
+          children={() => <CurrentWeatherScreen isMetric={isMetric} />}
+        />
+        <Tab.Screen
+          name={`Forecast - ${units}`}
+          children={() => <WeatherForecastScreen isMetric={isMetric} />}
+        />
+        <Tab.Screen
+          name="Settings"
+          children={() => (
+            <SettingsScreen isMetric={isMetric} setIsMetric={setIsMetric} />
+          )}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

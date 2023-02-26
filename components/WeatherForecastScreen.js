@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import { OPEN_WEATHER_API_KEY } from '@env';
 import { FlatList } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
@@ -8,7 +8,7 @@ import CityInput from './CityInput';
 import WeatherListItem from './WeatherListItem';
 import Header from './Header';
 
-const WeatherForecastScreen = () => {
+const WeatherForecastScreen = ({ isMetric }) => {
   const [forecastData, setForecastData] = useState({});
   const [city, setCity] = useState(null);
   const [location, setLocation] = useState(null);
@@ -40,7 +40,9 @@ const WeatherForecastScreen = () => {
   const fetchForecastDataByCity = async () => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${
+          isMetric === true ? 'metric' : 'imperial'
+        }&appid=${OPEN_WEATHER_API_KEY}`
       );
       const data = await response.json();
       setForecastData(data);
@@ -52,7 +54,11 @@ const WeatherForecastScreen = () => {
   const fetchForecastDataByCoords = async () => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=metric&appid=${OPEN_WEATHER_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${
+          location.coords.latitude
+        }&lon=${location.coords.longitude}&units=${
+          isMetric === true ? 'metric' : 'imperial'
+        }&appid=${OPEN_WEATHER_API_KEY}`
       );
       const data = await response.json();
       setForecastData(data);
